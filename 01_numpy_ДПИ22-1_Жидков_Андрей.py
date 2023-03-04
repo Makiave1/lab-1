@@ -108,7 +108,7 @@ np.place(a[:,1], a[:,1] == 0, 1)
 # In[10]:
 
 
-len(np.unique(arr, axis = 0))
+len(np.unique(a, axis = 0))
 
 
 # 6. Сколько и каких различных значений кол-ва ингредиентов присутвует в рецептах из датасета?
@@ -125,7 +125,7 @@ print(np.unique(a[:,2]))
 # In[ ]:
 
 
-i5 = arr[(a[:,2] < 5) | (a[:,2] == 5)]
+i5 = a[(a[:,2] < 5) | (a[:,2] == 5)]
 len(i5)
 
 
@@ -143,7 +143,7 @@ np.amax(m)
 # In[ ]:
 
 
-arrCopy = arr[a[:, 1].argsort()[::-1]] 
+arrCopy = a[a[:, 1].argsort()[::-1]] 
 srIn = aCopy[0:100,:] # Топ-100
 print(np.mean(srIn[:,2]))
 
