@@ -74,14 +74,14 @@ print(a_ld)
 # In[ ]:
 
 
-print('Среднее по 2му столбцу: ', np.around(np.mean(arr[:,1])))
-print('Среднее по 3му столбцу: ', np.around(np.mean(arr[:,2])))
-print('Минимум по 2му столбцу: ', np.amin(arr[:,1]))
-print('Минимум по 3му столбцу: ', np.amin(arr[:,2]))
-print('Максимум по 2му столбцу: ', np.amax(arr[:,1]))
-print('Максимум по 3му столбцу: ', np.amax(arr[:,2]))
-print('Медиана по 2му столбцу: ', np.median(arr[:,1]))
-print('Медиана по 3му столбцу: ', np.median(arr[:,2]))
+print('Среднее по 2му столбцу: ', np.around(np.mean(a[:,1])))
+print('Среднее по 3му столбцу: ', np.around(np.mean(a[:,2])))
+print('Минимум по 2му столбцу: ', np.amin(a[:,1]))
+print('Минимум по 3му столбцу: ', np.amin(a[:,2]))
+print('Максимум по 2му столбцу: ', np.amax(a[:,1]))
+print('Максимум по 3му столбцу: ', np.amax(a[:,2]))
+print('Медиана по 2му столбцу: ', np.median(a[:,1]))
+print('Медиана по 3му столбцу: ', np.median(a[:,2]))
 
 
 # 3. Ограничьте сверху значения продолжительности выполнения рецепта значением квантиля $q_{0.75}$. 
@@ -89,8 +89,8 @@ print('Медиана по 3му столбцу: ', np.median(arr[:,2]))
 # In[ ]:
 
 
-q = np.quantile(arr[:,1], q = 0.75)
-arr[:,1] = arr[:,1].clip(max = q)
+q = np.quantile(a[:,1], q = 0.75)
+a[:,1] = a[:,1].clip(max = q)
 
 
 # 4. Посчитайте, для скольких рецептов указана продолжительность, равная нулю. Замените для таких строк значение в данном столбце на 1.
@@ -98,9 +98,9 @@ arr[:,1] = arr[:,1].clip(max = q)
 # In[11]:
 
 
-zeros = len(arr[:,1])-np.count_nonzero(arr[:,1]) 
+zeros = len(a[:,1])-np.count_nonzero(a[:,1]) 
 print(zeros)
-np.place(arr[:,1], arr[:,1] == 0, 1)
+np.place(a[:,1], a[:,1] == 0, 1)
 
 
 # 5. Посчитайте, сколько уникальных рецептов находится в датасете.
@@ -116,8 +116,8 @@ len(np.unique(arr, axis = 0))
 # In[12]:
 
 
-print(len(np.unique(arr[:,2])))
-print(np.unique(arr[:,2]))
+print(len(np.unique(a[:,2])))
+print(np.unique(a[:,2]))
 
 
 # 7. Создайте версию массива, содержащую информацию только о рецептах, состоящих не более чем из 5 ингредиентов.
@@ -125,7 +125,7 @@ print(np.unique(arr[:,2]))
 # In[ ]:
 
 
-i5 = arr[(arr[:,2] < 5) | (arr[:,2] == 5)]
+i5 = arr[(a[:,2] < 5) | (a[:,2] == 5)]
 len(i5)
 
 
@@ -134,7 +134,7 @@ len(i5)
 # In[ ]:
 
 
-m = np.divide(arr[:,2], arr[:,1])
+m = np.divide(a[:,2], a[:,1])
 np.amax(m)
 
 
@@ -143,8 +143,8 @@ np.amax(m)
 # In[ ]:
 
 
-arrCopy = arr[arr[:, 1].argsort()[::-1]] 
-srIn = arrCopy[0:100,:] # Топ-100
+arrCopy = arr[a[:, 1].argsort()[::-1]] 
+srIn = aCopy[0:100,:] # Топ-100
 print(np.mean(srIn[:,2]))
 
 
@@ -154,7 +154,7 @@ print(np.mean(srIn[:,2]))
 
 
 idx = np.random.randint(100000, size=10)
-rows = arr[idx, :]
+rows = a[idx, :]
 print(rows)
 
 
@@ -163,8 +163,8 @@ print(rows)
 # In[ ]:
 
 
-k = len(arr[(arr[:,2] < (np.mean(arr[:,2])))])
-k1 = k / len(arr) * 100
+k = len(a[(a[:,2] < (np.mean(a[:,2])))])
+k1 = k / len(a) * 100
 print(k1, '%', sep = '')
 
 
@@ -174,9 +174,9 @@ print(k1, '%', sep = '')
 
 
 s = np.zeros((100000, 1), dtype = np.int32)
-arr = np.append(arr, s, 1)
-np.place(arr[:,3], (((arr[:,1] < 20) | (arr[:,1] == 20)) & ((arr[:,2] < 5) | (arr[:,2] == 5))), 1)
-arr
+a = np.append(a, s, 1)
+np.place(a[:,3], (((a[:,1] < 20) | (a[:,1] == 20)) & ((a[:,2] < 5) | (a[:,2] == 5))), 1)
+a
 
 
 # 13. Выведите процент "простых" рецептов в датасете
@@ -184,8 +184,8 @@ arr
 # In[ ]:
 
 
-p = len(arr[(arr[:,3] == 1)])
-p1 = p / len(arr) * 100
+p = len(a[(a[:,3] == 1)])
+p1 = p / len(a) * 100
 print(p1, '%', sep = '')
 
 
